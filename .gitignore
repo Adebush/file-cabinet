@@ -1,0 +1,22 @@
+# 运行时数据
+config.json
+secret.key
+codes.db
+*.db-journal
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# 上传的临时文件
+/data/
+staging/
+
+# 编辑器 / 系统
+.DS_Store
+.idea/
+.vscode/
+*.log

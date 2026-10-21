@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文件柜 · 配对码取件</title>
+<link rel="stylesheet" href="/static/style.css?v=20261021b">
+<meta name="robots" content="noindex,nofollow">
+</head>
+<body>
+<div class="login-wrap">
+  <div class="pickup">
+    <form class="glass login-card pickup-card" id="pickup-form" autocomplete="off">
+      <div class="brand" style="justify-content:center">
+        <div class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h4l2 2.5h6.5A2.5 2.5 0 0 1 20.5 10v7a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 2.5 17"/>
+            <path d="M3 9.5h17"/>
+          </svg>
+        </div>
+      </div>
+      <h1 class="pickup-title">文件柜</h1>
+      <p class="pickup-sub">输入 4 位配对码领取文件</p>
+
+      <div class="code-boxes" id="code-boxes">
+        <input class="code-digit" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="one-time-code" aria-label="配对码第 1 位" autofocus>
+        <input class="code-digit" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="配对码第 2 位">
+        <input class="code-digit" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="配对码第 3 位">
+        <input class="code-digit" inputmode="numeric" pattern="[0-9]*" maxlength="1" aria-label="配对码第 4 位">
+      </div>
+
+      <button class="btn primary block" type="submit" id="submit-btn" style="margin-top:18px">领取文件</button>
+
+      <div class="pickup-msg" id="msg"></div>
+    </form>
+
+    <div class="glass result-card" id="result" style="display:none">
+      <div class="result-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>
+        </svg>
+        <div>
+          <div class="result-name" id="r-name">文件名</div>
+          <div class="result-meta" id="r-meta"></div>
+        </div>
+      </div>
+      <div class="result-note" id="r-note"></div>
+      <a class="btn primary block" id="r-dl" href="#" style="margin-top:14px">下载文件</a>
+      <button class="btn ghost block" id="r-again" style="margin-top:8px">换一个配对码</button>
+    </div>
+
+    <div class="pickup-foot">
+      <div>添加文件请联系管理员</div>
+      {% if group_no %}<div class="group-no">QQ 群：<b>{{ group_no }}</b></div>{% endif %}
+    </div>
+  </div>
+</div>
+<script src="/static/public.js?v=20261021b"></script>
+</body>
+</html>

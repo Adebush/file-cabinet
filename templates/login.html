@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>登录 · 文件柜</title>
+<link rel="stylesheet" href="/static/style.css?v=20261021b">
+<meta name="robots" content="noindex,nofollow">
+</head>
+<body>
+<div class="login-wrap">
+  <form class="glass login-card" method="post" action="/login" autocomplete="off">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h4l2 2.5h6.5A2.5 2.5 0 0 1 20.5 10v7a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 2.5 17"/>
+          <path d="M3 9.5h17"/>
+        </svg>
+      </div>
+      <div>
+        <h1>文件柜</h1>
+        <span>FILE CABINET</span>
+      </div>
+    </div>
+    <p class="sub">私有文件管理与暂存空间，请输入账号继续。</p>
+
+    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+
+    <div class="field">
+      <label>用户名</label>
+      <input name="username" value="{{ user or '' }}" placeholder="用户名" autofocus required>
+    </div>
+    <div class="field">
+      <label>密码</label>
+      <input name="password" type="password" placeholder="密码" required>
+    </div>
+
+    <button class="btn primary block" type="submit">进入文件柜</button>
+    <div class="tip">仅限本人使用 · 连续输错 6 次将锁定 5 分钟</div>
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>文件柜</title>
+<link rel="stylesheet" href="/static/style.css?v=20261021b">
+<meta name="robots" content="noindex,nofollow">
+<meta name="csrf" content="{{ csrf }}">
+</head>
+<body>
+<div class="app">
+  <header class="glass topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h4l2 2.5h6.5A2.5 2.5 0 0 1 20.5 10v7a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 2.5 17"/>
+          <path d="M3 9.5h17"/>
+        </svg>
+      </div>
+      <div>
+        <h1>文件柜</h1>
+        <span>FILE CABINET</span>
+      </div>
+    </div>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="fs">服务器文件</button>
+      <button class="tab" data-tab="stage">暂存区</button>
+      <button class="tab" data-tab="codes">配对码</button>
+    </nav>
+
+    <div class="userbox">
+      <div class="avatar">{{ user[0]|upper }}</div>
+      <span>{{ user }}</span>
+      <button class="iconbtn" id="logout" title="退出登录">
+        <svg viewBox="0 0 24 24"><path d="M15 4h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-3"/><path d="M10 8l-4 4 4 4"/><path d="M6 12h11"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- 服务器文件 -->
+  <section class="glass panel" id="panel-fs">
+    <div class="toolbar">
+      <div class="crumbs" id="crumbs"></div>
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+        <input id="filter" placeholder="过滤当前目录">
+      </div>
+      <button class="btn" id="btn-up">上一级</button>
+      <button class="btn" id="btn-mkdir">新建文件夹</button>
+      <button class="btn" id="btn-hidden">隐藏文件</button>
+      <button class="btn primary" id="btn-upload">上传文件</button>
+    </div>
+
+    <div class="list" id="fs-list"></div>
+  </section>
+
+  <!-- 暂存区 -->
+  <section class="glass panel" id="panel-stage" style="display:none">
+    <div class="toolbar">
+      <div class="statrow" style="flex:1">
+        <div class="stat"><b id="stage-count">0</b><span>文件数</span></div>
+        <div class="stat"><b id="stage-size">0 B</b><span>占用空间</span></div>
+        <div class="stat"><b id="stage-free">—</b><span>磁盘可用</span></div>
+      </div>
+      <button class="btn" id="btn-stage-refresh">刷新</button>
+      <button class="btn primary" id="btn-stage-upload">上传到暂存区</button>
+    </div>
+
+    <div class="dropzone" id="stage-drop">
+      拖拽文件到这里上传到暂存区，或点击选择文件（单个最大 4GB）
+    </div>
+
+    <div class="list" id="stage-list"></div>
+  </section>
+  <!-- 配对码 -->
+  <section class="glass panel" id="panel-codes" style="display:none">
+    <div class="toolbar">
+      <div class="statrow" style="flex:1">
+        <div class="stat"><b id="code-total">0</b><span>配对码总数</span></div>
+        <div class="stat"><b id="code-active">0</b><span>可用</span></div>
+      </div>
+      <button class="btn" id="btn-codes-refresh">刷新</button>
+      <button class="btn primary" id="btn-new-code">生成配对码</button>
+    </div>
+    <div class="list" id="codes-list"></div>
+  </section>
+</div>
+
+
+
+<div class="mask" id="mask">
+  <div class="glass modal" id="modal">
+    <h3 id="m-title">标题</h3>
+    <p id="m-desc"></p>
+    <div id="m-body"></div>
+    <div class="foot">
+      <button class="btn ghost" id="m-cancel">取消</button>
+      <button class="btn primary" id="m-ok">确定</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="drop-overlay" id="drop-overlay"><div>松开以上传到当前目录</div></div>
+<input type="file" id="file-input" multiple hidden>
+<input type="file" id="stage-input" multiple hidden>
+
+<script src="/static/app.js?v=20261021b"></script>
+</body>
+</html>
